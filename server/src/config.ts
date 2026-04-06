@@ -14,7 +14,6 @@ const Schema = z.object({
   API_TOKEN: z.string().min(16, "API_TOKEN must be at least 16 chars"),
 
   CLAUDE_BIN: z.string().min(1).default("claude"),
-  MAX_BUDGET_USD: z.coerce.number().positive().default(1.0),
   JOB_TIMEOUT_MS: z.coerce.number().int().positive().default(600_000),
   MAX_SOURCE_BYTES: z.coerce.number().int().positive().default(262_144),
   DISALLOWED_TOOLS: z

@@ -105,7 +105,6 @@ INVARIANTS_FILE=$LLMWIKI_HOME/etc/system-invariants.txt
 API_TOKEN=$token
 
 CLAUDE_BIN=$(command -v claude || echo /usr/local/bin/claude)
-MAX_BUDGET_USD=1.00
 JOB_TIMEOUT_MS=600000
 MAX_SOURCE_BYTES=262144
 DISALLOWED_TOOLS=WebSearch,WebFetch

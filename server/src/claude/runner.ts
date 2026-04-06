@@ -19,7 +19,6 @@ export interface ClaudeRunInput {
   promptText: string;
   invariantsFile: string;
   cwd: string;
-  maxBudgetUsd: number;
   timeoutMs: number;
   disallowedTools: string[];
   abortSignal: AbortSignal;
@@ -68,8 +67,8 @@ interface ClaudeJsonOutput {
  *
  * Argv shape (verified against claude 2.1.81 — see notes in IMPLEMENTATION_PLAN
  * corrections section of the execution plan):
- *   - `--max-turns` does NOT exist in this CLI version. Bound jobs via
- *     `--max-budget-usd` and the execa `timeout` instead.
+ *   - `--max-turns` does NOT exist in this CLI version. Jobs are bounded by
+ *     the execa `timeout` only.
  *   - `--cwd` does NOT exist. Working directory is set on the child process.
  *   - `--append-system-prompt-file` exists but is hidden from --help.
  *   - `--no-session-persistence` keeps the host clean of per-job session files.
@@ -82,8 +81,6 @@ export async function runClaude(input: ClaudeRunInput): Promise<ClaudeRunResult>
     input.promptText,
     "--output-format",
     "json",
-    "--max-budget-usd",
-    input.maxBudgetUsd.toFixed(2),
     "--append-system-prompt-file",
     input.invariantsFile,
     "--permission-mode",

@@ -40,7 +40,6 @@ export function makeTempVaultConfig(overrides: Partial<Config> = {}): Config {
     INVARIANTS_FILE: invariants,
     API_TOKEN: "test-token-1234567890abcdef",
     CLAUDE_BIN: "/usr/bin/false",
-    MAX_BUDGET_USD: 0.01,
     JOB_TIMEOUT_MS: 5000,
     MAX_SOURCE_BYTES: 65536,
     DISALLOWED_TOOLS: ["WebSearch", "WebFetch"],

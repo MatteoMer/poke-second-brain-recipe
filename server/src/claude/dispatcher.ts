@@ -22,7 +22,6 @@ export class ClaudeDispatcher implements JobDispatcher {
       promptText,
       invariantsFile: this.config.INVARIANTS_FILE,
       cwd: this.config.VAULT_PATH,
-      maxBudgetUsd: this.config.MAX_BUDGET_USD,
       timeoutMs: this.config.JOB_TIMEOUT_MS,
       disallowedTools: this.config.DISALLOWED_TOOLS,
       abortSignal: signal,
