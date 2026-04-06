@@ -1,0 +1,31 @@
+[Unit]
+Description=LLM Wiki API + worker
+After=network-online.target obsidian-headless.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=llmwiki
+Group=llmwiki
+WorkingDirectory=/srv/llm-wiki/server
+EnvironmentFile=/etc/llm-wiki/env
+ExecStart=/usr/bin/node /srv/llm-wiki/server/dist/index.js
+Restart=on-failure
+RestartSec=10s
+KillSignal=SIGTERM
+TimeoutStopSec=900
+
+# Logging (pino JSON straight to journald)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=llm-wiki-api
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/llm-wiki
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

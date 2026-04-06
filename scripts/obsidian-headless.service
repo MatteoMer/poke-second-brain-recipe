@@ -1,0 +1,28 @@
+[Unit]
+Description=Obsidian Headless Sync (llm-wiki vault)
+Documentation=https://github.com/obsidianmd/obsidian-headless
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=llmwiki
+Group=llmwiki
+WorkingDirectory=/srv/llm-wiki
+ExecStart=/usr/bin/ob sync --continuous
+Restart=on-failure
+RestartSec=10s
+
+# Logging
+StandardOutput=append:/srv/llm-wiki/log/obsidian.log
+StandardError=append:/srv/llm-wiki/log/obsidian.err
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/llm-wiki
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

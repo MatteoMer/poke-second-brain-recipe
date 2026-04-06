@@ -1,0 +1,30 @@
+# Node
+node_modules/
+*.log
+npm-debug.log*
+yarn-error.log
+
+# Build output
+dist/
+plugin/main.js
+plugin/main.js.map
+
+# Test scratch
+coverage/
+
+# Vault runtime files (the synced workspace settings live here on the laptop)
+vault/.obsidian/workspace*
+vault/.obsidian/cache
+vault/.obsidian/plugins/*/data.json
+vault/.llm-wiki.lock
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local env overrides
+.env
+.env.local
+server/.env
